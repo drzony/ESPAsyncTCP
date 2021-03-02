@@ -1120,6 +1120,7 @@ void AsyncServer::begin(){
   tcp_setprio(pcb, TCP_PRIO_MIN);
   ip_addr_t local_addr;
   local_addr.addr = (uint32_t) _addr;
+  ip_set_option(pcb, SOF_REUSEADDR);
   err = tcp_bind(pcb, &local_addr, _port);
   // Failures are ERR_ISCONN or ERR_USE
   if (err != ERR_OK) {
